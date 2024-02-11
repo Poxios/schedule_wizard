@@ -7,6 +7,7 @@ interface ISubject {
   }[];
 }
 interface ISubjectGroup {
+  gradeTime: number;
   isMandatory: boolean;
   name: string;
   subjects: ISubject[];
@@ -22,7 +23,7 @@ const input: InputType = {
   minSubjectsCount: 3,
   groups: [
     {
-      name: "프로그래밍언어", isMandatory: true, subjects: [
+      name: "프로그래밍언어", gradeTime: 3, isMandatory: true, subjects: [
         {
           name: "프로그래밍언어", time: [
             { day: "TUE", start: "10:30", end: "11:45" },
@@ -44,7 +45,7 @@ const input: InputType = {
       ]
     },
     {
-      name: "마케팅", isMandatory: false, subjects: [
+      name: "마케팅", gradeTime: 3, isMandatory: false, subjects: [
         {
           name: "마케팅", time: [
             { day: "TUE", start: "13:30", end: "14:45" },
@@ -54,7 +55,7 @@ const input: InputType = {
       ]
     },
     {
-      name: "Entrepreneurship", isMandatory: false, subjects: [
+      name: "Entrepreneurship", gradeTime: 3, isMandatory: false, subjects: [
         {
           name: "Entrepreneurship (최금선)", time: [
             { day: "THU", start: "10:30", end: "11:45" },
@@ -82,7 +83,7 @@ const input: InputType = {
       ]
     },
     {
-      name: "생산시스템관리", isMandatory: false, subjects: [
+      name: "생산시스템관리", gradeTime: 3, isMandatory: false, subjects: [
         {
           name: "생산시스템관리(가)", time: [
             { day: "MON", start: "10:30", end: "11:45" },
