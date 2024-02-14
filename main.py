@@ -2,10 +2,7 @@ from copy import deepcopy
 from itertools import combinations
 
 
-# util for time control
-def string_time_to_minutes(time):
-    return int(time.split(":")[0]) * 60 + int(time.split(":")[1])
-
+# ! 예시 데이터 Input
 
 input_data = {
     "minSubjectsCount": 2,
@@ -118,9 +115,15 @@ input_data = {
     ],
 }
 
+# ! 유틸 함수 정의
 
-# 1. 컴비네이션으로 전공선택 몇개 고른 경우의 수 모두 구하고 앞에 필수과목 붙여넣음.
-# 최소 과목 ~ 최대과목 수까지 돌림.
+
+# 시간표 데이터 불러오기
+def string_time_to_minutes(time):
+    return int(time.split(":")[0]) * 60 + int(time.split(":")[1])
+
+
+# ? 전공 선택 최소픽 ~ 최대픽까지 조합 모두 구함
 combination_result = []
 mandatory_subjects = list(filter(lambda x: x["isMandatory"], input_data["groups"]))
 not_mandatory_subjects = list(
@@ -134,13 +137,13 @@ for not_mandatory_subjects_count in range(
         lambda x: mandatory_subjects + list(x),
         combinations(
             not_mandatory_subjects,
-            not_mandatory_subjects_count,  # 선택 과목이 선택될 값
+            not_mandatory_subjects_count,  # 선택 과목이 몇개 선택될 건지
         ),
     )
 
 result_by_combination = []
 
-# 2. 각 경우의 수마다 모든 조합을 구한다.
+# ? 각 전공 선택의 선택 경우마다 조합을 구한다.
 for combination_candidate in combination_result:
 
     def recursion(targetDepth: int, schedule_arr: list, result_array: list):
@@ -184,7 +187,7 @@ for combination_candidate in combination_result:
     result = []
     recursion(len(combination_candidate), [], result)
 
-    # 3. free_days을 구하고, 각 일의 free time between classes를 구한다
+    # ? 공강 요일 계산
     days = set(["MON", "TUE", "WED", "THU", "FRI"])
     for idx, candidates in enumerate(result):
         used_days = set()
@@ -193,7 +196,7 @@ for combination_candidate in combination_result:
                 used_days.add(time["day"])
         candidates["freeDays"] = list(days - used_days)
 
-    # 각 일의 free time between classes를 구한다 ** 이게 어렵네
+    # ? 각 요일 비는 시간 계산
     for candidates in result:
         for day in ["MON", "TUE", "WED", "THU", "FRI"]:
             free_time_between_classes = 0
@@ -216,15 +219,13 @@ for combination_candidate in combination_result:
         result_by_combination.append(deepcopy(item))
 
 # ! 정렬
-# 정렬 조건
-# 1. freeDays가 많은 순서대로
-# 1.5. 과목 수가 많은 순서대로
-# 2. freeTimeBetweenClasses가 적은 순서대로 (마이너스를 붙여서 오름차순으로 변환)
 result_by_combination.sort(
     key=lambda x: (
-        len(x["freeDays"]),
-        len(x["schedule"]),
-        -sum(x["freeTimeBetweenClasses"].values()),
+        len(x["freeDays"]),  # 공강 요일이 많을 수록 좋다
+        len(x["schedule"]),  # 같은 공강 요일 개수라면 많은 과목이 좋다
+        -sum(
+            x["freeTimeBetweenClasses"].values()
+        ),  # 수업 사이에 비는 시간은 적을 수록 좋다.
     ),
     reverse=True,
 )
