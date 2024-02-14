@@ -112,6 +112,90 @@ input_data = {
                 },
             ],
         },
+        {
+            "name": "파일처리",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "파일처리(가)",
+                    "time": [
+                        {"day": "MON", "start": "13:30", "end": "14:45"},
+                        {"day": "THU", "start": "12:00", "end": "13:15"},
+                    ],
+                },
+                {
+                    "name": "파일처리(나)",
+                    "time": [
+                        {"day": "TUE", "start": "12:00", "end": "13:15"},
+                        {"day": "THU", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "유통물류창업론",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "유통물류창업론",
+                    "time": [
+                        {"day": "MON", "start": "15:00", "end": "16:15"},
+                        {"day": "MON", "start": "16:30", "end": "17:45"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "채플",
+            "gradeTime": 3,
+            "isMandatory": True,
+            "subjects": [
+                {
+                    "name": "채플 (3학년 사회 공대)",
+                    "time": [
+                        {"day": "TUE", "start": "13:30", "end": "14:20"},
+                    ],
+                },
+                {
+                    "name": "채플 (2학년 사회/IT대)",
+                    "time": [
+                        {"day": "MON", "start": "13:30", "end": "14:20"},
+                    ],
+                },
+                {
+                    "name": "채플 (2학년 자연/법/공대)",
+                    "time": [
+                        {"day": "MON", "start": "15:00", "end": "15:50"},
+                    ],
+                },
+                {
+                    "name": "채플 (2학년 이상 / 전체단과대학)",
+                    "time": [
+                        {"day": "TUE", "start": "16:30", "end": "17:20"},
+                    ],
+                },
+                {
+                    "name": "채플 (2학년 인문/경통/경영대)",
+                    "time": [
+                        {"day": "MON", "start": "10:30", "end": "11:20"},
+                    ],
+                },
+                {
+                    "name": "채플 (3학년 인문/경통/경영대)",
+                    "time": [
+                        {"day": "TUE", "start": "10:30", "end": "11:20"},
+                    ],
+                },
+                {
+                    "name": "채플 (3학년 자연/법/IT대)",
+                    "time": [
+                        {"day": "TUE", "start": "15:00", "end": "15:50"},
+                    ],
+                },
+            ],
+        },
     ],
 }
 
@@ -232,4 +316,4 @@ result_by_combination.sort(
 
 
 # ! 출력
-print(result_by_combination)
+print(result_by_combination[: len(result_by_combination) / 3])
