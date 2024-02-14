@@ -314,6 +314,16 @@ result_by_combination.sort(
     reverse=True,
 )
 
+real_result = []
+
+# ! 선택 (추후 제거 필요)
+# for item in result_by_combination:
+#     for subject in item["schedule"]:
+#         if "파일처리" in subject["name"] and len(item["schedule"]) == 5:
+#             real_result.append(item)
 
 # ! 출력
-print(result_by_combination[: len(result_by_combination) / 3])
+print(len(result_by_combination))
+print(result_by_combination)
+# print(result_by_combination[1])
+# print(result_by_combination[: len(result_by_combination) / 3])
