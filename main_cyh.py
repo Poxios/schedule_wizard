@@ -8,26 +8,68 @@ input_data = {
     "minSubjectsCount": 2,
     "groups": [
         {
+            "name": "프로그래밍언어",
+            "gradeTime": 3,
+            "isMandatory": True,
+            "subjects": [
+                {
+                    "name": "프로그래밍언어A",
+                    "time": [
+                        {"day": "TUE", "start": "10:30", "end": "11:45"},
+                        {"day": "THU", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+                {
+                    "name": "프로그래밍언어B",
+                    "time": [
+                        {"day": "TUE", "start": "13:30", "end": "14:45"},
+                        {"day": "THU", "start": "10:30", "end": "11:45"},
+                    ],
+                },
+                {
+                    "name": "프로그래밍언어C",
+                    "time": [
+                        {"day": "TUE", "start": "15:00", "end": "16:15"},
+                        {"day": "THU", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+            ],
+        },
+        # {
+        #     "name": "마케팅",
+        #     "gradeTime": 3,
+        #     "isMandatory": False,
+        #     "subjects": [
+        #         {
+        #             "name": "마케팅A",
+        #             "time": [
+        #                 {"day": "TUE", "start": "13:30", "end": "14:45"},
+        #                 {"day": "THU", "start": "13:30", "end": "14:45"},
+        #             ],
+        #         }
+        #     ],
+        # },
+        {
             "name": "데이터통신",
             "gradeTime": 3,
             "isMandatory": True,
             "subjects": [
                 {
-                    "name": "데이터통신1",
+                    "name": "데이터통신A",
                     "time": [
                         {"day": "MON", "start": "09:00", "end": "10:15"},
                         {"day": "WED", "start": "10:30", "end": "11:45"},
                     ],
                 },
                 {
-                    "name": "데이터통신2",
+                    "name": "데이터통신B",
                     "time": [
                         {"day": "MON", "start": "10:30", "end": "11:45"},
                         {"day": "WED", "start": "09:00", "end": "10:15"},
                     ],
                 },
                 {
-                    "name": "데이터통신3",
+                    "name": "데이터통신C",
                     "time": [
                         {"day": "MON", "start": "13:30", "end": "14:45"},
                         {"day": "WED", "start": "12:00", "end": "13:15"},
@@ -35,7 +77,7 @@ input_data = {
                 },
             ],
         },
-         {
+        {
             "name": "경영정보시스템",
             "gradeTime": 3,
             "isMandatory": True,
@@ -63,59 +105,65 @@ input_data = {
                 },
             ],
         },
+        # {
+        #     "name": "Entrepreneurship",
+        #     "gradeTime": 3,
+        #     "isMandatory": False,
+        #     "subjects": [
+        #         {
+        #             "name": "Entrepreneurship (최금선)",
+        #             "time": [
+        #                 {"day": "THU", "start": "10:30", "end": "11:45"},
+        #                 {"day": "THU", "start": "12:00", "end": "13:15"},
+        #             ],
+        #         },
+        #         {
+        #             "name": "Entrepreneurship (박병호)",
+        #             "time": [
+        #                 {"day": "TUE", "start": "15:00", "end": "16:15"},
+        #                 {"day": "TUE", "start": "16:30", "end": "17:45"},
+        #             ],
+        #         },
+        #         {
+        #             "name": "Entrepreneurship (김영수)A",
+        #             "time": [
+        #                 {"day": "MON", "start": "15:00", "end": "16:15"},
+        #                 {"day": "WED", "start": "15:00", "end": "16:15"},
+        #             ],
+        #         },
+        #         {
+        #             "name": "Entrepreneurship (김영수)B",
+        #             "time": [
+        #                 {"day": "MON", "start": "16:30", "end": "17:45"},
+        #                 {"day": "WED", "start": "16:30", "end": "17:45"},
+        #             ],
+        #         },
+        #     ],
+        # },
         {
-            "name": "지능형시스템",
+            "name": "생산시스템관리",
             "gradeTime": 3,
             "isMandatory": False,
             "subjects": [
                 {
-                    "name": "지능형시스템1",
+                    "name": "생산시스템관리(가)",
                     "time": [
-                        {"day": "MON", "start": "16:30", "end": "17:45"},
-                        {"day": "WED", "start": "16:30", "end": "17:45"},
-                    ],
-                },
-                {
-                    "name": "지능형시스템2",
-                    "time": [
-                        {"day": "MON", "start": "18:00", "end": "19:15"},
-                        {"day": "WED", "start": "18:00", "end": "19:15"},
-                    ],
-                }
-            ],
-        },
-        {
-            "name": "컴퓨터공학특강1",
-            "gradeTime": 3,
-            "isMandatory": False,
-            "subjects": [
-                {
-                    "name": "컴퓨터공학특강1",
-                    "time": [
-                        {"day": "THU", "start": "14:00", "end": "14:50"},
-                        {"day": "THU", "start": "15:00", "end": "15:50"},
-                    ],
-                }
-            ],
-        },
-        
-        {
-            "name": "네트워크프로그래밍(영어)",
-            "gradeTime": 3,
-            "isMandatory": False,
-            "subjects": [
-                {
-                    "name": "네트워크프로그래밍(1)",
-                    "time": [
-                        {"day": "TUE", "start": "10:30", "end": "11:45"},
+                        {"day": "MON", "start": "10:30", "end": "11:45"},
                         {"day": "THU", "start": "12:00", "end": "13:15"},
                     ],
                 },
                 {
-                    "name": "네트워크프로그래밍(2)",
+                    "name": "생산시스템관리(나)",
+                    "time": [
+                        {"day": "MON", "start": "12:00", "end": "13:15"},
+                        {"day": "THU", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+                {
+                    "name": "생산시스템관리(다)",
                     "time": [
                         {"day": "TUE", "start": "12:00", "end": "13:15"},
-                        {"day": "THU", "start": "10:30", "end": "11:45"},
+                        {"day": "THU", "start": "16:30", "end": "17:45"},
                     ],
                 },
             ],
@@ -137,6 +185,69 @@ input_data = {
                     "time": [
                         {"day": "TUE", "start": "12:00", "end": "13:15"},
                         {"day": "THU", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "유통물류창업론",
+            "gradeTime": 3,
+            "isMandatory": True,
+            "subjects": [
+                {
+                    "name": "유통물류창업론",
+                    "time": [
+                        {"day": "MON", "start": "15:00", "end": "16:15"},
+                        {"day": "MON", "start": "16:30", "end": "17:45"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "채플",
+            "gradeTime": 3,
+            "isMandatory": True,
+            "subjects": [
+                {
+                    "name": "채플 (3학년 사회 공대)",
+                    "time": [
+                        {"day": "TUE", "start": "13:30", "end": "14:20"},
+                    ],
+                },
+                {
+                    "name": "채플 (2학년 사회/IT대)",
+                    "time": [
+                        {"day": "MON", "start": "13:30", "end": "14:20"},
+                    ],
+                },
+                {
+                    "name": "채플 (2학년 자연/법/공대)",
+                    "time": [
+                        {"day": "MON", "start": "15:00", "end": "15:50"},
+                    ],
+                },
+                {
+                    "name": "채플 (2학년 이상 / 전체단과대학)",
+                    "time": [
+                        {"day": "TUE", "start": "16:30", "end": "17:20"},
+                    ],
+                },
+                {
+                    "name": "채플 (2학년 인문/경통/경영대)",
+                    "time": [
+                        {"day": "MON", "start": "10:30", "end": "11:20"},
+                    ],
+                },
+                {
+                    "name": "채플 (3학년 인문/경통/경영대)",
+                    "time": [
+                        {"day": "TUE", "start": "10:30", "end": "11:20"},
+                    ],
+                },
+                {
+                    "name": "채플 (3학년 자연/법/IT대)",
+                    "time": [
+                        {"day": "TUE", "start": "15:00", "end": "15:50"},
                     ],
                 },
             ],
@@ -264,11 +375,13 @@ real_result = []
 # ! 선택 (추후 제거 필요)
 for item in result_by_combination:
     for subject in item["schedule"]:
-        if not ('FRI' in item['freeDays']):
+        if (
+            "경영정보시스템" in subject["name"] or "데이터통신" in subject["name"]
+        ) and len(item["schedule"]) == 5:
             real_result.append(item)
 
 # ! 출력
 # print(len(result_by_combination))
+# print(real_result[0])
 print(result_by_combination)
-# print(result_by_combination[1])
 # print(result_by_combination[: len(result_by_combination) / 3])
