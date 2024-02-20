@@ -52,7 +52,7 @@ input_data = {
         {
             "name": "데이터통신",
             "gradeTime": 3,
-            "isMandatory": True,
+            "isMandatory": False,
             "subjects": [
                 {
                     "name": "데이터통신A",
@@ -78,9 +78,22 @@ input_data = {
             ],
         },
         {
+            "name": "Marketing Innovation",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "Marketing Innovation(1)",
+                    "time": [
+                        {"day": "MON", "start": "15:00", "end": "17:45"},
+                    ],
+                },
+            ],
+        },
+        {
             "name": "경영정보시스템",
             "gradeTime": 3,
-            "isMandatory": True,
+            "isMandatory": False,
             "subjects": [
                 {
                     "name": "경영정보시스템A",
@@ -105,41 +118,41 @@ input_data = {
                 },
             ],
         },
-        # {
-        #     "name": "Entrepreneurship",
-        #     "gradeTime": 3,
-        #     "isMandatory": False,
-        #     "subjects": [
-        #         {
-        #             "name": "Entrepreneurship (최금선)",
-        #             "time": [
-        #                 {"day": "THU", "start": "10:30", "end": "11:45"},
-        #                 {"day": "THU", "start": "12:00", "end": "13:15"},
-        #             ],
-        #         },
-        #         {
-        #             "name": "Entrepreneurship (박병호)",
-        #             "time": [
-        #                 {"day": "TUE", "start": "15:00", "end": "16:15"},
-        #                 {"day": "TUE", "start": "16:30", "end": "17:45"},
-        #             ],
-        #         },
-        #         {
-        #             "name": "Entrepreneurship (김영수)A",
-        #             "time": [
-        #                 {"day": "MON", "start": "15:00", "end": "16:15"},
-        #                 {"day": "WED", "start": "15:00", "end": "16:15"},
-        #             ],
-        #         },
-        #         {
-        #             "name": "Entrepreneurship (김영수)B",
-        #             "time": [
-        #                 {"day": "MON", "start": "16:30", "end": "17:45"},
-        #                 {"day": "WED", "start": "16:30", "end": "17:45"},
-        #             ],
-        #         },
-        #     ],
-        # },
+        {
+            "name": "Entrepreneurship",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "Entrepreneurship (최금선)",
+                    "time": [
+                        {"day": "THU", "start": "10:30", "end": "11:45"},
+                        {"day": "THU", "start": "12:00", "end": "13:15"},
+                    ],
+                },
+                {
+                    "name": "Entrepreneurship (박병호)",
+                    "time": [
+                        {"day": "TUE", "start": "15:00", "end": "16:15"},
+                        {"day": "TUE", "start": "16:30", "end": "17:45"},
+                    ],
+                },
+                {
+                    "name": "Entrepreneurship (김영수)A",
+                    "time": [
+                        {"day": "MON", "start": "15:00", "end": "16:15"},
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+                {
+                    "name": "Entrepreneurship (김영수)B",
+                    "time": [
+                        {"day": "MON", "start": "16:30", "end": "17:45"},
+                        {"day": "WED", "start": "16:30", "end": "17:45"},
+                    ],
+                },
+            ],
+        },
         {
             "name": "생산시스템관리",
             "gradeTime": 3,
@@ -192,7 +205,7 @@ input_data = {
         {
             "name": "유통물류창업론",
             "gradeTime": 3,
-            "isMandatory": True,
+            "isMandatory": False,
             "subjects": [
                 {
                     "name": "유통물류창업론",
@@ -372,16 +385,19 @@ result_by_combination.sort(
 
 real_result = []
 
+must_be_list = set([])
+must_not_be_list = set([])
+
 # ! 선택 (추후 제거 필요)
 for item in result_by_combination:
-    for subject in item["schedule"]:
-        if (
-            "경영정보시스템" in subject["name"] or "데이터통신" in subject["name"]
-        ) and len(item["schedule"]) == 5:
-            real_result.append(item)
+    real_result.append(item)
+    # sub_names = set(map(lambda x: x["name"], item["schedule"]))
+    # # 포함되어 있으면 안되는 set item 중 하나라도 가지는게 없는 상태
+    # if must_not_be_list & sub_names == set():
+    #     real_result.append(item)
 
 # ! 출력
 # print(len(result_by_combination))
-# print(real_result[0])
-print(result_by_combination)
+print(real_result)
+# print(result_by_combination)
 # print(result_by_combination[: len(result_by_combination) / 3])
