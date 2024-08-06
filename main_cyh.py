@@ -8,259 +8,166 @@ input_data = {
     "minSubjectsCount": 2,
     "groups": [
         {
-            "name": "프로그래밍언어",
+            "name": "앱플밍",
             "gradeTime": 3,
             "isMandatory": True,
             "subjects": [
                 {
-                    "name": "프로그래밍언어A",
+                    "name": "앱플밍",
                     "time": [
-                        {"day": "TUE", "start": "10:30", "end": "11:45"},
-                        {"day": "THU", "start": "13:30", "end": "14:45"},
-                    ],
-                },
-                {
-                    "name": "프로그래밍언어B",
-                    "time": [
-                        {"day": "TUE", "start": "13:30", "end": "14:45"},
-                        {"day": "THU", "start": "10:30", "end": "11:45"},
-                    ],
-                },
-                {
-                    "name": "프로그래밍언어C",
-                    "time": [
-                        {"day": "TUE", "start": "15:00", "end": "16:15"},
-                        {"day": "THU", "start": "15:00", "end": "16:15"},
-                    ],
-                },
-            ],
-        },
-        # {
-        #     "name": "마케팅",
-        #     "gradeTime": 3,
-        #     "isMandatory": False,
-        #     "subjects": [
-        #         {
-        #             "name": "마케팅A",
-        #             "time": [
-        #                 {"day": "TUE", "start": "13:30", "end": "14:45"},
-        #                 {"day": "THU", "start": "13:30", "end": "14:45"},
-        #             ],
-        #         }
-        #     ],
-        # },
-        {
-            "name": "데이터통신",
-            "gradeTime": 3,
-            "isMandatory": False,
-            "subjects": [
-                {
-                    "name": "데이터통신A",
-                    "time": [
-                        {"day": "MON", "start": "09:00", "end": "10:15"},
-                        {"day": "WED", "start": "10:30", "end": "11:45"},
-                    ],
-                },
-                {
-                    "name": "데이터통신B",
-                    "time": [
-                        {"day": "MON", "start": "10:30", "end": "11:45"},
-                        {"day": "WED", "start": "09:00", "end": "10:15"},
-                    ],
-                },
-                {
-                    "name": "데이터통신C",
-                    "time": [
-                        {"day": "MON", "start": "13:30", "end": "14:45"},
-                        {"day": "WED", "start": "12:00", "end": "13:15"},
+                        {"day": "MON", "start": "18:00", "end": "19:50"},
+                        {"day": "TUE", "start": "19:30", "end": "21:20"},
                     ],
                 },
             ],
         },
         {
-            "name": "Marketing Innovation",
+            "name": "알고리즘",
             "gradeTime": 3,
-            "isMandatory": False,
+            "isMandatory": True,
             "subjects": [
                 {
-                    "name": "Marketing Innovation(1)",
-                    "time": [
-                        {"day": "MON", "start": "15:00", "end": "17:45"},
-                    ],
-                },
-            ],
-        },
-        {
-            "name": "경영정보시스템",
-            "gradeTime": 3,
-            "isMandatory": False,
-            "subjects": [
-                {
-                    "name": "경영정보시스템A",
-                    "time": [
-                        {"day": "TUE", "start": "13:30", "end": "14:45"},
-                        {"day": "THU", "start": "15:00", "end": "16:15"},
-                    ],
-                },
-                {
-                    "name": "경영정보시스템B",
-                    "time": [
-                        {"day": "TUE", "start": "10:30", "end": "11:45"},
-                        {"day": "THU", "start": "10:30", "end": "11:45"},
-                    ],
-                },
-                {
-                    "name": "경영정보시스템C",
-                    "time": [
-                        {"day": "MON", "start": "12:00", "end": "13:15"},
-                        {"day": "THU", "start": "13:30", "end": "14:45"},
-                    ],
-                },
-            ],
-        },
-        {
-            "name": "Entrepreneurship",
-            "gradeTime": 3,
-            "isMandatory": False,
-            "subjects": [
-                {
-                    "name": "Entrepreneurship (최금선)",
-                    "time": [
-                        {"day": "THU", "start": "10:30", "end": "11:45"},
-                        {"day": "THU", "start": "12:00", "end": "13:15"},
-                    ],
-                },
-                {
-                    "name": "Entrepreneurship (박병호)",
-                    "time": [
-                        {"day": "TUE", "start": "15:00", "end": "16:15"},
-                        {"day": "TUE", "start": "16:30", "end": "17:45"},
-                    ],
-                },
-                {
-                    "name": "Entrepreneurship (김영수)A",
-                    "time": [
-                        {"day": "MON", "start": "15:00", "end": "16:15"},
-                        {"day": "WED", "start": "15:00", "end": "16:15"},
-                    ],
-                },
-                {
-                    "name": "Entrepreneurship (김영수)B",
+                    "name": "알고리즘",
                     "time": [
                         {"day": "MON", "start": "16:30", "end": "17:45"},
-                        {"day": "WED", "start": "16:30", "end": "17:45"},
-                    ],
-                },
-            ],
-        },
-        {
-            "name": "생산시스템관리",
-            "gradeTime": 3,
-            "isMandatory": False,
-            "subjects": [
-                {
-                    "name": "생산시스템관리(가)",
-                    "time": [
-                        {"day": "MON", "start": "10:30", "end": "11:45"},
-                        {"day": "THU", "start": "12:00", "end": "13:15"},
-                    ],
-                },
-                {
-                    "name": "생산시스템관리(나)",
-                    "time": [
-                        {"day": "MON", "start": "12:00", "end": "13:15"},
-                        {"day": "THU", "start": "13:30", "end": "14:45"},
-                    ],
-                },
-                {
-                    "name": "생산시스템관리(다)",
-                    "time": [
-                        {"day": "TUE", "start": "12:00", "end": "13:15"},
                         {"day": "THU", "start": "16:30", "end": "17:45"},
                     ],
                 },
             ],
         },
         {
-            "name": "파일처리",
+            "name": "전공종합설계2",
+            "gradeTime": 3,
+            "isMandatory": True,
+            "subjects": [
+                {
+                    "name": "전종설1",
+                    "time": [
+                        {"day": "MON", "start": "13:30", "end": "14:45"},
+                        {"day": "WED", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+                {
+                    "name": "전종설2",
+                    "time": [
+                        {"day": "MON", "start": "13:30", "end": "14:45"},
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "데이터베이스",
             "gradeTime": 3,
             "isMandatory": False,
             "subjects": [
                 {
-                    "name": "파일처리(가)",
+                    "name": "데이터베이스1",
                     "time": [
                         {"day": "MON", "start": "13:30", "end": "14:45"},
+                        {"day": "WED", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+                {
+                    "name": "데이터베이스2",
+                    "time": [
+                        {"day": "TUE", "start": "12:00", "end": "13:15"},
                         {"day": "THU", "start": "12:00", "end": "13:15"},
                     ],
                 },
                 {
-                    "name": "파일처리(나)",
+                    "name": "데이터베이스3",
                     "time": [
-                        {"day": "TUE", "start": "12:00", "end": "13:15"},
+                        {"day": "TUE", "start": "15:00", "end": "16:15"},
                         {"day": "THU", "start": "15:00", "end": "16:15"},
                     ],
                 },
             ],
         },
         {
-            "name": "유통물류창업론",
+            "name": "OS",
             "gradeTime": 3,
-            "isMandatory": False,
+            "isMandatory": True,
             "subjects": [
                 {
-                    "name": "유통물류창업론",
+                    "name": "OS 1",
+                    "time": [
+                        {"day": "MON", "start": "10:30", "end": "11:45"},
+                        {"day": "WED", "start": "10:30", "end": "11:45"},
+                    ],
+                },
+                {
+                    "name": "OS 2",
+                    "time": [
+                        {"day": "MON", "start": "12:00", "end": "13:15"},
+                        {"day": "WED", "start": "12:00", "end": "13:15"},
+                    ],
+                },
+                {
+                    "name": "OS 3",
                     "time": [
                         {"day": "MON", "start": "15:00", "end": "16:15"},
-                        {"day": "MON", "start": "16:30", "end": "17:45"},
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+                {
+                    "name": "OS 4 (양)",
+                    "time": [
+                        {"day": "WED", "start": "12:00", "end": "13:15"},
+                        {"day": "FRI", "start": "12:00", "end": "13:15"},
                     ],
                 },
             ],
         },
         {
-            "name": "채플",
-            "gradeTime": 3,
+            "name": "섬김의리더십",
+            "gradeTime": 1,
             "isMandatory": True,
             "subjects": [
                 {
-                    "name": "채플 (3학년 사회 공대)",
+                    "name": "섬리1",
                     "time": [
-                        {"day": "TUE", "start": "13:30", "end": "14:20"},
+                        {"day": "THU", "start": "14:00", "end": "14:50"},
                     ],
                 },
                 {
-                    "name": "채플 (2학년 사회/IT대)",
+                    "name": "섬리2",
                     "time": [
-                        {"day": "MON", "start": "13:30", "end": "14:20"},
+                        {"day": "MON", "start": "16:00", "end": "16:50"},
                     ],
                 },
                 {
-                    "name": "채플 (2학년 자연/법/공대)",
+                    "name": "섬리3",
                     "time": [
-                        {"day": "MON", "start": "15:00", "end": "15:50"},
+                        {"day": "TUE", "start": "15:00", "end": "16:50"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "확통",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "확통1 (한진일)",
+                    "time": [
+                        {"day": "MON", "start": "15:00", "end": "16:15"},
+                        {"day": "WED", "start": "10:30", "end": "11:45"},
                     ],
                 },
                 {
-                    "name": "채플 (2학년 이상 / 전체단과대학)",
+                    "name": "확통2 (한진일)",
                     "time": [
-                        {"day": "TUE", "start": "16:30", "end": "17:20"},
+                        {"day": "MON", "start": "10:30", "end": "11:45"},
+                        {"day": "TUE", "start": "15:00", "end": "16:15"},
                     ],
                 },
                 {
-                    "name": "채플 (2학년 인문/경통/경영대)",
+                    "name": "확통3 (이연수)",
                     "time": [
-                        {"day": "MON", "start": "10:30", "end": "11:20"},
-                    ],
-                },
-                {
-                    "name": "채플 (3학년 인문/경통/경영대)",
-                    "time": [
-                        {"day": "TUE", "start": "10:30", "end": "11:20"},
-                    ],
-                },
-                {
-                    "name": "채플 (3학년 자연/법/IT대)",
-                    "time": [
-                        {"day": "TUE", "start": "15:00", "end": "15:50"},
+                        {"day": "TUE", "start": "15:00", "end": "16:15"},
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
                     ],
                 },
             ],
