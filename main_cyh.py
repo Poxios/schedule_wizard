@@ -1,16 +1,55 @@
 from copy import deepcopy
 from itertools import combinations
-
+import json
 
 # ! 예시 데이터 Input
 
 input_data = {
     "minSubjectsCount": 2,
+    "minGradeTime": 10,
+    "maxGradeTime": 20,
     "groups": [
+        # [전필] OS
+        {
+            "name": "OS",
+            "gradeTime": 3,
+            "isMandatory": True,
+            "subjects": [
+                {
+                    "name": "OS 1",
+                    "time": [
+                        {"day": "MON", "start": "10:30", "end": "11:45"},
+                        {"day": "WED", "start": "10:30", "end": "11:45"},
+                    ],
+                },
+                {
+                    "name": "OS 2",
+                    "time": [
+                        {"day": "MON", "start": "12:00", "end": "13:15"},
+                        {"day": "WED", "start": "12:00", "end": "13:15"},
+                    ],
+                },
+                {
+                    "name": "OS 3",
+                    "time": [
+                        {"day": "MON", "start": "15:00", "end": "16:15"},
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+                # {
+                #     "name": "OS 4 (양)",
+                #     "time": [
+                #         {"day": "WED", "start": "12:00", "end": "13:15"},
+                #         {"day": "FRI", "start": "12:00", "end": "13:15"},
+                #     ],
+                # },
+            ],
+        },
+        # [융필] 앱플밍
         {
             "name": "앱플밍",
             "gradeTime": 3,
-            "isMandatory": True,
+            "isMandatory": False,
             "subjects": [
                 {
                     "name": "앱플밍",
@@ -21,10 +60,11 @@ input_data = {
                 },
             ],
         },
+        # [전필] 알고리즘
         {
             "name": "알고리즘",
             "gradeTime": 3,
-            "isMandatory": True,
+            "isMandatory": False,
             "subjects": [
                 {
                     "name": "알고리즘",
@@ -35,27 +75,80 @@ input_data = {
                 },
             ],
         },
+        # [융선, 전선] 신상품계획론
         {
-            "name": "전공종합설계2",
+            "name": "신상품계획론",
             "gradeTime": 3,
-            "isMandatory": True,
+            "isMandatory": False,
             "subjects": [
                 {
-                    "name": "전종설1",
+                    "name": "신상품계획론_김근배_2150434001",
                     "time": [
-                        {"day": "MON", "start": "13:30", "end": "14:45"},
-                        {"day": "WED", "start": "13:30", "end": "14:45"},
+                        {"day": "WED", "start": "10:30", "end": "11:45"},
+                        {"day": "THU", "start": "10:30", "end": "11:45"},
                     ],
                 },
                 {
-                    "name": "전종설2",
+                    "name": "신상품계획론_김근배_2150434002",
                     "time": [
-                        {"day": "MON", "start": "13:30", "end": "14:45"},
-                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                        {"day": "WED", "start": "13:30", "end": "14:45"},
+                        {"day": "THU", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+                # {
+                #     "name": "신상품계획론_오현석_2150434003",
+                #     "time": [
+                #         {"day": "FRI", "start": "18:00", "end": "19:15"},
+                #         {"day": "FRI", "start": "19:30", "end": "20:45"},
+                #     ],
+                # },
+                {
+                    "name": "신상품계획론_정문선_2150434004",
+                    "time": [
+                        {"day": "THU", "start": "13:30", "end": "14:45"},
+                        {"day": "THU", "start": "15:00", "end": "16:15"},
                     ],
                 },
             ],
         },
+        # [융선] 컴퓨터비전
+        {
+            "name": "컴퓨터비전",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "컴퓨터비전_송현주_2150692501",
+                    "time": [
+                        {"day": "MON", "start": "12:00", "end": "13:15"},
+                        {"day": "WED", "start": "10:30", "end": "11:45"},
+                    ],
+                },
+                {
+                    "name": "컴퓨터비전_송현주_2150692502",
+                    "time": [
+                        {"day": "TUE", "start": "12:00", "end": "13:15"},
+                        {"day": "THU", "start": "12:00", "end": "13:15"},
+                    ],
+                },
+            ],
+        },
+        # [전선] 오픈소스기반기초설계
+        {
+            "name": "오픈소스기반기초설계",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "오픈소스기반기초설계_김익수_2150061301",
+                    "time": [
+                        {"day": "WED", "start": "09:00", "end": "10:15"},
+                        {"day": "WED", "start": "10:30", "end": "11:45"},
+                    ],
+                }
+            ],
+        },
+        # [전선] 데이터베이스
         {
             "name": "데이터베이스",
             "gradeTime": 3,
@@ -84,66 +177,119 @@ input_data = {
                 },
             ],
         },
-        {
-            "name": "OS",
-            "gradeTime": 3,
-            "isMandatory": True,
-            "subjects": [
-                {
-                    "name": "OS 1",
-                    "time": [
-                        {"day": "MON", "start": "10:30", "end": "11:45"},
-                        {"day": "WED", "start": "10:30", "end": "11:45"},
-                    ],
-                },
-                {
-                    "name": "OS 2",
-                    "time": [
-                        {"day": "MON", "start": "12:00", "end": "13:15"},
-                        {"day": "WED", "start": "12:00", "end": "13:15"},
-                    ],
-                },
-                {
-                    "name": "OS 3",
-                    "time": [
-                        {"day": "MON", "start": "15:00", "end": "16:15"},
-                        {"day": "WED", "start": "15:00", "end": "16:15"},
-                    ],
-                },
-                {
-                    "name": "OS 4 (양)",
-                    "time": [
-                        {"day": "WED", "start": "12:00", "end": "13:15"},
-                        {"day": "FRI", "start": "12:00", "end": "13:15"},
-                    ],
-                },
-            ],
-        },
+        # [교양] 섬리
         {
             "name": "섬김의리더십",
             "gradeTime": 1,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "섬김의리더십_문정화_2150533701",
+                    "time": [{"day": "THU", "start": "14:00", "end": "14:50"}],
+                },
+                {
+                    "name": "섬김의리더십_최춘화_2150533702",
+                    "time": [{"day": "MON", "start": "16:00", "end": "16:50"}],
+                },
+                {
+                    "name": "섬김의리더십_문정화_2150533703",
+                    "time": [{"day": "TUE", "start": "15:00", "end": "15:50"}],
+                },
+                {
+                    "name": "섬김의리더십_문정화_2150533704",
+                    "time": [{"day": "TUE", "start": "16:00", "end": "16:50"}],
+                },
+                {
+                    "name": "섬김의리더십_문정화_2150533705",
+                    "time": [{"day": "WED", "start": "14:00", "end": "14:50"}],
+                },
+                {
+                    "name": "섬김의리더십_문정화_2150533706",
+                    "time": [{"day": "THU", "start": "15:00", "end": "15:50"}],
+                },
+                {
+                    "name": "섬김의리더십_문정화_2150533707",
+                    "time": [{"day": "THU", "start": "16:00", "end": "16:50"}],
+                },
+                # {
+                #     "name": "섬김의리더십_문정화_2150533708",
+                #     "time": [{"day": "FRI", "start": "15:00", "end": "15:50"}],
+                # },
+                # {
+                #     "name": "섬김의리더십_문정화_2150533709",
+                #     "time": [{"day": "FRI", "start": "16:00", "end": "16:50"}],
+                # },
+                {
+                    "name": "섬김의리더십_최춘화_2150533710",
+                    "time": [{"day": "WED", "start": "15:00", "end": "15:50"}],
+                },
+                {
+                    "name": "섬김의리더십_최춘화_2150533711",
+                    "time": [{"day": "WED", "start": "16:00", "end": "16:50"}],
+                },
+                # {
+                #     "name": "섬김의리더십_최춘화_2150533712",
+                #     "time": [{"day": "FRI", "start": "15:00", "end": "15:50"}],
+                # },
+                # {
+                #     "name": "섬김의리더십_최춘화_2150533713",
+                #     "time": [{"day": "FRI", "start": "16:00", "end": "16:50"}],
+                # },
+                {
+                    "name": "섬김의리더십_문정화_2150533714",
+                    "time": [{"day": "TUE", "start": "14:00", "end": "14:50"}],
+                },
+                # {
+                #     "name": "섬김의리더십_문정화_2150533715",
+                #     "time": [{"day": "FRI", "start": "14:00", "end": "14:50"}],
+                # },
+            ],
+        },
+        # 채플
+        {
+            "name": "비전채플",
+            "gradeTime": 0.5,
             "isMandatory": True,
             "subjects": [
                 {
-                    "name": "섬리1",
-                    "time": [
-                        {"day": "THU", "start": "14:00", "end": "14:50"},
-                    ],
+                    "name": "비전채플_김회권_2150101508",
+                    "time": [{"day": "TUE", "start": "16:30", "end": "17:20"}],
+                },
+                # {
+                #     "name": "비전채플_김회권_2150101509",
+                #     "time": [{"day": "MON", "start": "04:00", "end": "04:10"}],
+                # },
+                {
+                    "name": "비전채플_김회권_2150101504",
+                    "time": [{"day": "MON", "start": "16:30", "end": "17:20"}],
                 },
                 {
-                    "name": "섬리2",
-                    "time": [
-                        {"day": "MON", "start": "16:00", "end": "16:50"},
-                    ],
+                    "name": "비전채플_조은식_2150101501",
+                    "time": [{"day": "MON", "start": "10:30", "end": "11:20"}],
                 },
                 {
-                    "name": "섬리3",
-                    "time": [
-                        {"day": "TUE", "start": "15:00", "end": "16:50"},
-                    ],
+                    "name": "비전채플_조은식_2150101502",
+                    "time": [{"day": "MON", "start": "13:30", "end": "14:20"}],
+                },
+                {
+                    "name": "비전채플_김회권_2150101503",
+                    "time": [{"day": "MON", "start": "15:00", "end": "15:50"}],
+                },
+                {
+                    "name": "비전채플_조은식_2150101505",
+                    "time": [{"day": "TUE", "start": "10:30", "end": "11:20"}],
+                },
+                {
+                    "name": "비전채플_조은식_2150101506",
+                    "time": [{"day": "TUE", "start": "13:30", "end": "14:20"}],
+                },
+                {
+                    "name": "비전채플_김회권_2150101507",
+                    "time": [{"day": "TUE", "start": "15:00", "end": "15:50"}],
                 },
             ],
         },
+        # [융선, 1학년] 확통
         {
             "name": "확통",
             "gradeTime": 3,
@@ -172,6 +318,80 @@ input_data = {
                 },
             ],
         },
+        # 소비자행동론
+        {
+            "name": "소비자행동론",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "소비자행동론_이명수_2150610302",
+                    "time": [
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                        {"day": "WED", "start": "16:30", "end": "17:45"},
+                    ],
+                }
+            ],
+        },
+        # [전선, 4학년] 전종설
+        {
+            "name": "전공종합설계2",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "전종설1",
+                    "time": [
+                        {"day": "MON", "start": "13:30", "end": "14:45"},
+                        {"day": "WED", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+                {
+                    "name": "전종설2",
+                    "time": [
+                        {"day": "MON", "start": "13:30", "end": "14:45"},
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+            ],
+        },
+        # [전선] 정보보안
+        {
+            "name": "정보보안",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "정보보안_최봉준_2150630801",
+                    "time": [
+                        {"day": "TUE", "start": "10:30", "end": "11:45"},
+                        {"day": "THU", "start": "10:30", "end": "11:45"},
+                    ],
+                }
+            ],
+        },
+        # [전선] 인공지능 (이거하면 금공강 못함)
+        # {
+        #     "name": "인공지능",
+        #     "gradeTime": 3,
+        #     "isMandatory": False,
+        #     "subjects": [
+        #         {
+        #             "name": "인공지능_정다흰_2150188401",
+        #             "time": [
+        #                 {"day": "TUE", "start": "15:00", "end": "16:15"},
+        #                 {"day": "FRI", "start": "13:30", "end": "14:45"},
+        #             ],
+        #         },
+        #         {
+        #             "name": "인공지능_정다흰_2150188402",
+        #             "time": [
+        #                 {"day": "TUE", "start": "16:30", "end": "17:45"},
+        #                 {"day": "FRI", "start": "15:00", "end": "16:15"},
+        #             ],
+        #         },
+        #     ],
+        # },
     ],
 }
 
@@ -295,16 +515,28 @@ real_result = []
 must_be_list = set([])
 must_not_be_list = set([])
 
-# ! 선택 (추후 제거 필요)
+# ! 어떻게 짰는지 까먹어서 학점 후처리로 추가함.
 for item in result_by_combination:
+    for idx, element in enumerate(item["schedule"]):
+        name_to_find = element["name"]  # 이 이름 가지고 학점 찾아야 됨.
+        for subject in input_data["groups"]:
+            for subject_detail in subject["subjects"]:
+                if subject_detail["name"] == name_to_find:
+                    item["schedule"][idx]["gradeTime"] = subject["gradeTime"]
+                    item["schedule"][idx]["originalName"] = subject["name"]
     real_result.append(item)
-    # sub_names = set(map(lambda x: x["name"], item["schedule"]))
-    # # 포함되어 있으면 안되는 set item 중 하나라도 가지는게 없는 상태
-    # if must_not_be_list & sub_names == set():
-    #     real_result.append(item)
+
+
+# ! 결과 필터링
+real_result = list(
+    filter(
+        # real_result 안에 있는 items 중 gradeTime 총합이 19 이하인 것만
+        lambda x: input_data["minGradeTime"]
+        <= sum(map(lambda y: y["gradeTime"], x["schedule"]))
+        <= input_data["maxGradeTime"],
+        real_result,
+    )
+)
 
 # ! 출력
-# print(len(result_by_combination))
-print(real_result)
-# print(result_by_combination)
-# print(result_by_combination[: len(result_by_combination) / 3])
+print(json.dumps(real_result, ensure_ascii=False))
