@@ -1,33 +1,137 @@
 from copy import deepcopy
 from itertools import combinations
-
-
-# ! 예시 데이터 Input
+import json
+import os
 
 input_data = {
     "minSubjectsCount": 2,
     "groups": [
         {
-            "name": "데이터통신",
+            "name": "전공종합설계1",
             "gradeTime": 3,
             "isMandatory": True,
             "subjects": [
                 {
-                    "name": "데이터통신1",
+                    "name": "전공종합설계1-1",
+                    "time": [
+                        {"day": "MON", "start": "13:30", "end": "14:45"},
+                        {"day": "WED", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+                {
+                    "name": "전공종합설계1-2",
+                    "time": [
+                        {"day": "MON", "start": "15:00", "end": "16:15"},
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "유통물류창업론",
+            "gradeTime": 3,
+            "isMandatory": True,
+            "subjects": [
+                {
+                    "name": "유통물류창업론 (2150050801)",
+                    "time": [
+                        {"day": "TUE", "start": "15:00", "end": "16:15"},
+                        {"day": "TUE", "start": "16:30", "end": "17:45"},
+                    ],
+                }
+            ],
+        },
+        {
+            "name": "컴퓨터학개론",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "컴퓨터학개론 (2150016203(공통-재수강))",
                     "time": [
                         {"day": "MON", "start": "09:00", "end": "10:15"},
+                        {"day": "MON", "start": "10:30", "end": "11:45"},
+                    ],
+                }
+            ],
+        },
+        {
+            "name": "벤처중소기업브랜드전략",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "벤처중소기업브랜드전략 (2150630601)",
+                    "time": [
+                        {"day": "FRI", "start": "09:00", "end": "10:15"},
+                        {"day": "FRI", "start": "10:30", "end": "11:45"},
+                    ],
+                }
+            ],
+        },
+        {
+            "name": "Entrepreneurship",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "Entrepreneurship (2150328201)",
+                    "time": [
+                        {"day": "TUE", "start": "10:30", "end": "11:45"},
+                        {"day": "TUE", "start": "12:00", "end": "13:15"},
+                    ],
+                },
+                {
+                    "name": "Entrepreneurship (2150328202)",
+                    "time": [
+                        {"day": "TUE", "start": "13:30", "end": "14:45"},
+                        {"day": "TUE", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+                {
+                    "name": "Entrepreneurship (2150328203)",
+                    "time": [
+                        {"day": "FRI", "start": "13:30", "end": "14:45"},
+                        {"day": "FRI", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+                {
+                    "name": "Entrepreneurship (2150644001)",
+                    "time": [
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                        {"day": "WED", "start": "16:30", "end": "17:45"},
+                    ],
+                },
+                {
+                    "name": "Entrepreneurship (2150644002(공통-재수강))",
+                    "time": [
+                        {"day": "WED", "start": "18:00", "end": "19:15"},
+                        {"day": "WED", "start": "19:30", "end": "20:45"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "생산시스템관리",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "생산시스템관리 (2150361701)",
+                    "time": [
+                        {"day": "TUE", "start": "10:30", "end": "11:45"},
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+                {
+                    "name": "생산시스템관리 (2150361702)",
+                    "time": [
+                        {"day": "MON", "start": "12:00", "end": "13:15"},
                         {"day": "WED", "start": "10:30", "end": "11:45"},
                     ],
                 },
                 {
-                    "name": "데이터통신2",
-                    "time": [
-                        {"day": "MON", "start": "10:30", "end": "11:45"},
-                        {"day": "WED", "start": "09:00", "end": "10:15"},
-                    ],
-                },
-                {
-                    "name": "데이터통신3",
+                    "name": "생산시스템관리 (2150361703)",
                     "time": [
                         {"day": "MON", "start": "13:30", "end": "14:45"},
                         {"day": "WED", "start": "12:00", "end": "13:15"},
@@ -35,117 +139,197 @@ input_data = {
                 },
             ],
         },
-         {
-            "name": "경영정보시스템",
+        {
+            "name": "스타트업비즈니스모델개발론",
             "gradeTime": 3,
-            "isMandatory": True,
+            "isMandatory": False,
             "subjects": [
                 {
-                    "name": "경영정보시스템A",
+                    "name": "스타트업비즈니스모델개발론 (2150039601)",
                     "time": [
-                        {"day": "TUE", "start": "13:30", "end": "14:45"},
+                        {"day": "THU", "start": "13:30", "end": "14:45"},
+                        {"day": "THU", "start": "15:00", "end": "16:15"},
+                    ],
+                }
+            ],
+        },
+        {
+            "name": "마케팅",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "마케팅 (2150338201)",
+                    "time": [
+                        {"day": "WED", "start": "12:00", "end": "13:15"},
                         {"day": "THU", "start": "15:00", "end": "16:15"},
                     ],
                 },
                 {
-                    "name": "경영정보시스템B",
+                    "name": "마케팅 (2150338202)",
+                    "time": [
+                        {"day": "TUE", "start": "13:30", "end": "14:45"},
+                        {"day": "THU", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+                {
+                    "name": "마케팅 (2150338203)",
                     "time": [
                         {"day": "TUE", "start": "10:30", "end": "11:45"},
                         {"day": "THU", "start": "10:30", "end": "11:45"},
                     ],
                 },
                 {
-                    "name": "경영정보시스템C",
+                    "name": "마케팅 (2150338204(공통-재수강))",
+                    "time": [
+                        {"day": "THU", "start": "10:30", "end": "11:45"},
+                        {"day": "THU", "start": "12:00", "end": "13:15"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "경영정보시스템",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "경영정보시스템 (2150558701)",
                     "time": [
                         {"day": "MON", "start": "12:00", "end": "13:15"},
+                        {"day": "THU", "start": "12:00", "end": "13:15"},
+                    ],
+                },
+                {
+                    "name": "경영정보시스템 (2150558702)",
+                    "time": [
+                        {"day": "MON", "start": "13:30", "end": "14:45"},
+                        {"day": "FRI", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "컴퓨터그래픽스",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "컴퓨터그래픽스 (2150629401)",
+                    "time": [
+                        {"day": "TUE", "start": "13:30", "end": "14:45"},
+                        {"day": "THU", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+                {
+                    "name": "컴퓨터그래픽스 (2150629402)",
+                    "time": [
+                        {"day": "TUE", "start": "15:00", "end": "16:15"},
+                        {"day": "THU", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "컴퓨터비전응용",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "컴퓨터비전응용 (2150046101)",
+                    "time": [
+                        {"day": "WED", "start": "13:30", "end": "14:45"},
+                        {"day": "FRI", "start": "13:30", "end": "14:45"},
+                    ],
+                },
+                {
+                    "name": "컴퓨터비전응용 (2150046102)",
+                    "time": [
+                        {"day": "TUE", "start": "13:30", "end": "14:45"},
                         {"day": "THU", "start": "13:30", "end": "14:45"},
                     ],
                 },
             ],
         },
         {
+            "name": "소비자행동론",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "소비자행동론 (2150672701)",
+                    "time": [
+                        {"day": "MON", "start": "15:00", "end": "16:15"},
+                        {"day": "WED", "start": "15:00", "end": "16:15"},
+                    ],
+                },
+                {
+                    "name": "소비자행동론 (2150672702)",
+                    "time": [
+                        {"day": "MON", "start": "09:00", "end": "10:15"},
+                        {"day": "WED", "start": "09:00", "end": "10:15"},
+                    ],
+                },
+                {
+                    "name": "소비자행동론 (2150672703)",
+                    "time": [
+                        {"day": "MON", "start": "10:30", "end": "11:45"},
+                        {"day": "WED", "start": "10:30", "end": "11:45"},
+                    ],
+                },
+            ],
+        },
+        {
+            "name": "빅데이터와 Business Intelligence",
+            "gradeTime": 3,
+            "isMandatory": False,
+            "subjects": [
+                {
+                    "name": "빅데이터와 Business Intelligence (2150572001)",
+                    "time": [
+                        {"day": "TUE", "start": "16:30", "end": "17:45"},
+                        {"day": "TUE", "start": "18:00", "end": "19:15"},
+                    ],
+                },
+            ],
+        },
+        # {
+        #     "name": "데이터베이스응용",
+        #     "gradeTime": 3,
+        #     "isMandatory": False,
+        #     "subjects": [
+        #         {
+        #             "name": "데이터베이스응용 (2150565701)",
+        #             "time": [
+        #                 {"day": "MON", "start": "12:00", "end": "13:15"},
+        #                 {"day": "WED", "start": "12:00", "end": "13:15"},
+        #             ],
+        #         },
+        #     ],
+        # },
+        {
             "name": "지능형시스템",
             "gradeTime": 3,
             "isMandatory": False,
             "subjects": [
                 {
-                    "name": "지능형시스템1",
+                    "name": "지능형시스템 (2150534701)",
                     "time": [
-                        {"day": "MON", "start": "16:30", "end": "17:45"},
                         {"day": "WED", "start": "16:30", "end": "17:45"},
-                    ],
-                },
-                {
-                    "name": "지능형시스템2",
-                    "time": [
-                        {"day": "MON", "start": "18:00", "end": "19:15"},
                         {"day": "WED", "start": "18:00", "end": "19:15"},
                     ],
-                }
-            ],
-        },
-        {
-            "name": "컴퓨터공학특강1",
-            "gradeTime": 3,
-            "isMandatory": False,
-            "subjects": [
-                {
-                    "name": "컴퓨터공학특강1",
-                    "time": [
-                        {"day": "THU", "start": "14:00", "end": "14:50"},
-                        {"day": "THU", "start": "15:00", "end": "15:50"},
-                    ],
-                }
-            ],
-        },
-        
-        {
-            "name": "네트워크프로그래밍(영어)",
-            "gradeTime": 3,
-            "isMandatory": False,
-            "subjects": [
-                {
-                    "name": "네트워크프로그래밍(1)",
-                    "time": [
-                        {"day": "TUE", "start": "10:30", "end": "11:45"},
-                        {"day": "THU", "start": "12:00", "end": "13:15"},
-                    ],
                 },
                 {
-                    "name": "네트워크프로그래밍(2)",
+                    "name": "지능형시스템 (2150534702)",
                     "time": [
-                        {"day": "TUE", "start": "12:00", "end": "13:15"},
-                        {"day": "THU", "start": "10:30", "end": "11:45"},
-                    ],
-                },
-            ],
-        },
-        {
-            "name": "파일처리",
-            "gradeTime": 3,
-            "isMandatory": False,
-            "subjects": [
-                {
-                    "name": "파일처리(가)",
-                    "time": [
-                        {"day": "MON", "start": "13:30", "end": "14:45"},
-                        {"day": "THU", "start": "12:00", "end": "13:15"},
-                    ],
-                },
-                {
-                    "name": "파일처리(나)",
-                    "time": [
-                        {"day": "TUE", "start": "12:00", "end": "13:15"},
-                        {"day": "THU", "start": "15:00", "end": "16:15"},
+                        {"day": "MON", "start": "16:30", "end": "17:45"},
+                        {"day": "MON", "start": "18:00", "end": "19:15"},
                     ],
                 },
             ],
         },
     ],
 }
-
-# ! 유틸 함수 정의
-
 
 # 시간표 데이터 불러오기
 def string_time_to_minutes(time):
@@ -264,7 +448,7 @@ real_result = []
 # ! 선택 (추후 제거 필요)
 for item in result_by_combination:
     for subject in item["schedule"]:
-        if not ('FRI' in item['freeDays']):
+        if not ("FRI" in item["freeDays"]):
             real_result.append(item)
 
 # ! 출력
@@ -272,3 +456,20 @@ for item in result_by_combination:
 print(result_by_combination)
 # print(result_by_combination[1])
 # print(result_by_combination[: len(result_by_combination) / 3])
+
+# 상위 디렉토리의 경로 생성
+output_dir = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)), "schedule_wizard_react", "src", "assets"
+)
+
+# 디렉토리가 없다면 생성
+os.makedirs(output_dir, exist_ok=True)
+
+# JSON 파일 경로
+output_file = os.path.join(output_dir, "a.json")
+
+# JSON 파일로 저장
+with open(output_file, "w", encoding="utf-8") as f:
+    json.dump(result_by_combination, f, ensure_ascii=False, indent=2)
+
+print(f"결과가 {output_file}에 저장되었습니다.")
